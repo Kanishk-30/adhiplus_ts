@@ -1,0 +1,644 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  /* Pure white */
+  --foreground: oklch(0.145 0 0);
+  /* Dark text */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* ADHIPLUS BRAND COLORS - Deep Green from logo */
+  --primary: oklch(0.25 0.12 130);
+  /* Deep Green for buttons */
+  --primary-foreground: oklch(0.985 0 0);
+
+  /* ADHIPLUS BRAND COLORS - Lime Green for hovers */
+  --secondary: oklch(0.72 0.15 125);
+  /* Lime green for hover effects */
+  --secondary-foreground: oklch(0.15 0 0);
+
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  /* Changed accent to lime green for better hover consistency */
+  --accent: oklch(0.72 0.15 125);
+  /* Lime green for accents */
+  --accent-foreground: oklch(0.15 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.25 0.12 130);
+  /* Green focus ring */
+
+  /* ADHIPLUS CHART COLORS - All packaging colors */
+  --chart-1: oklch(0.25 0.12 130);
+  /* Deep Green */
+  --chart-2: oklch(0.72 0.15 125);
+  /* Lime Green */
+  --chart-3: oklch(0.58 0.18 235);
+  /* Blue */
+  --chart-4: oklch(0.75 0.15 65);
+  /* Yellow from packaging */
+  --chart-5: oklch(0.55 0.22 315);
+  /* Purple/Magenta from packaging */
+
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.25 0.12 130);
+  /* Green sidebar */
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.25 0.12 130);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.25 0.12 130);
+
+  /* Footer darker green color */
+  --footer-green: oklch(0.2 0.15 130);
+  /* Even darker green for text */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.35 0.15 130);
+  /* Slightly lighter green for dark mode */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.72 0.15 125);
+  /* Lime green stays same */
+  --secondary-foreground: oklch(0.145 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.72 0.15 125);
+  /* Lime green accent */
+  --accent-foreground: oklch(0.145 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.35 0.15 130);
+  --chart-1: oklch(0.35 0.15 130);
+  /* Lighter Green for dark mode */
+  --chart-2: oklch(0.72 0.15 125);
+  /* Lime Green */
+  --chart-3: oklch(0.58 0.18 235);
+  /* Blue */
+  --chart-4: oklch(0.75 0.15 65);
+  /* Yellow */
+  --chart-5: oklch(0.55 0.22 315);
+  /* Purple */
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.35 0.15 130);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.35 0.15 130);
+  --footer-green: oklch(0.4 0.15 130);
+  /* Darker green for dark mode text */
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-footer-green: var(--footer-green);
+}
+
+/* Keep all your custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(45, 80, 22, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(45, 80, 22, 0.4), 0 0 30px rgba(45, 80, 22, 0.2);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Animation delay utilities */
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar - Updated with Adhiplus colors */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Parallax container */
+.parallax-container {
+  overflow-x: hidden;
+}
+
+/* Hover effects for interactive elements */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Text reveal animation */
+.text-reveal {
+  overflow: hidden;
+  position: relative;
+}
+
+.text-reveal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  transform: translateX(-100%);
+  animation: reveal 1.5s ease-out forwards;
+}
+
+@keyframes reveal {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* HERO IMAGE BLUR */
+  section[id="home"] img[src*="modern-construction-site"] {
+    filter: blur(1.2px) brightness(0.85) contrast(1.1) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Hero overlay for better text readability */
+  section[id="home"] .bg-primary\/60 {
+    background: radial-gradient(ellipse at center,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.4) 60%,
+        rgba(0, 0, 0, 0.6) 100%) !important;
+  }
+
+  /* Hero text enhancement */
+  section[id="home"] h1 {
+    text-shadow:
+      2px 2px 8px rgba(0, 0, 0, 0.9),
+      0px 0px 20px rgba(255, 255, 255, 0.1) !important;
+  }
+
+  section[id="home"] p {
+    text-shadow:
+      1px 1px 4px rgba(0, 0, 0, 0.8),
+      0px 0px 12px rgba(255, 255, 255, 0.05) !important;
+  }
+
+  /* REMOVE TINTS FROM NON-HERO IMAGES */
+  img:not(section[id="home"] *),
+  picture:not(section[id="home"] *),
+  svg:not(section[id="home"] *),
+  video:not(section[id="home"] *),
+  canvas:not(section[id="home"] *) {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+  }
+
+  /* Remove hover effects from non-hero images */
+  img:not(section[id="home"] *):hover,
+  picture:not(section[id="home"] *):hover,
+  svg:not(section[id="home"] *):hover {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: transparent !important;
+    transform: none !important;
+  }
+
+  /* Force remove Tailwind green overlay classes */
+  .bg-green-50,
+  .bg-green-100,
+  .bg-green-200,
+  .bg-green-300,
+  .bg-green-400,
+  .bg-green-500,
+  .bg-green-600,
+  .bg-green-700,
+  .bg-green-800,
+  .bg-green-900,
+  .bg-green-500\/10,
+  .bg-green-500\/20,
+  .bg-green-500\/30,
+  .bg-primary\/5,
+  .bg-primary\/10,
+  .bg-primary\/15,
+  .bg-primary\/20,
+  [class*="bg-green"]:not([class*="text"]):not([class*="border"]):not(button):not(section[id="home"] *),
+  [class*="bg-primary"]:not([class*="text"]):not([class*="border"]):not(button):not(section[id="home"] *) {
+    background: transparent !important;
+  }
+
+  /* HEADER BACKDROP BLUR */
+  header,
+  nav,
+  .header,
+  [class*="header"]:not([class*="image"]),
+  [class*="nav"]:not([class*="image"]),
+  [role="banner"],
+  [data-sticky],
+  [class*="sticky"]:not([class*="image"]),
+  [class*="fixed"]:not([class*="image"]) {
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  /* Dark mode header blur */
+  .dark header,
+  .dark nav,
+  .dark .header,
+  .dark [class*="header"]:not([class*="image"]),
+  .dark [class*="nav"]:not([class*="image"]) {
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    background: rgba(20, 20, 20, 0.85) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Keep header content clear */
+  header img,
+  nav img,
+  header button,
+  nav button,
+  header a,
+  nav a,
+  [class*="header"] img,
+  [class*="header"] button,
+  [class*="header"] a,
+  [class*="nav"] img,
+  [class*="nav"] button,
+  [class*="nav"] a {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: transparent !important;
+  }
+
+  /* BUTTON STYLES */
+  button,
+  .btn,
+  [role="button"] {
+    transition: all 0.3s ease !important;
+  }
+
+  /* Primary buttons - Green background */
+  button:not(.secondary):not(.outline):not(.header-btn),
+  .btn-primary,
+  [class*="primary"] button {
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+  }
+
+  /* Button hover effects - Lime green */
+  button:not(.secondary):not(.outline):not(.header-btn):hover,
+  .btn-primary:hover,
+  [class*="primary"] button:hover {
+    background-color: var(--secondary) !important;
+    color: var(--secondary-foreground) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* ADMIN BUTTON - Lime Green Color */
+  .admin-button,
+  button[class*="admin"],
+  a[href*="admin"],
+  [class*="admin"] button,
+  button:has-text("Admin"),
+  a:has-text("Admin") {
+    background-color: var(--secondary) !important;
+    /* Lime green */
+    color: var(--secondary-foreground) !important;
+  }
+
+  .admin-button:hover,
+  button[class*="admin"]:hover,
+  a[href*="admin"]:hover,
+  [class*="admin"] button:hover {
+    background-color: var(--primary) !important;
+    /* Green on hover */
+    color: var(--primary-foreground) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* Header button hover - text only */
+  .header-btn:hover,
+  nav a:hover,
+  header a:hover,
+  [class*="nav"] a:hover,
+  [class*="header"] a:hover {
+    color: var(--secondary) !important;
+    background: transparent !important;
+  }
+
+  /* LINK STYLES */
+  a {
+    transition: color 0.3s ease !important;
+    color: var(--footer-green) !important;
+  }
+
+  a:hover {
+    color: var(--secondary) !important;
+    background: transparent !important;
+  }
+
+  /* Footer links */
+  footer a,
+  .footer a,
+  [class*="footer"] a {
+    color: white !important;
+  }
+
+  footer a:hover,
+  .footer a:hover,
+  [class*="footer"] a:hover {
+    color: var(--secondary) !important;
+    /* Lime green on hover */
+  }
+
+  /* Focus states */
+  *:focus-visible {
+    outline: 2px solid var(--primary) !important;
+    outline-offset: 2px !important;
+  }
+
+  /* ADHIPLUS BRAND FONT - Matching packaging style */
+  .adhiplus-brand-text {
+    font-family: 'Bebas Neue', 'Anton', 'Oswald', 'Impact', 'Arial Black', sans-serif !important;
+    font-size: 2rem !important;
+    /* Slightly larger */
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    /* Tighter spacing like packaging */
+    color: var(--primary) !important;
+    line-height: 0.9 !important;
+    /* Tighter line height */
+    font-stretch: extra-condensed !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    transform: scaleY(1.1) !important;
+    /* Makes letters taller/more condensed */
+    display: inline-block !important;
+  }
+
+  /* Header margins adjustment */
+  header .container {
+    padding-left: 1.5rem !important;
+    /* px-6 */
+    padding-right: 1.5rem !important;
+  }
+
+  @media (min-width: 640px) {
+    header .container {
+      padding-left: 2rem !important;
+      /* px-8 */
+      padding-right: 2rem !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    header .container {
+      padding-left: 3rem !important;
+      /* px-12 */
+      padding-right: 3rem !important;
+    }
+  }
+
+  /* Hero Adhiplus Title - Same font as header */
+  .adhiplus-hero-title {
+    font-family: 'Bebas Neue', 'Anton', 'Oswald', 'Impact', 'Arial Black', sans-serif !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    line-height: 0.9 !important;
+    font-stretch: extra-condensed !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    transform: scaleY(1.1) !important;
+    display: inline-block !important;
+    text-shadow:
+      2px 2px 8px rgba(0, 0, 0, 0.9),
+      0px 0px 20px rgba(255, 255, 255, 0.1) !important;
+  }
+}
