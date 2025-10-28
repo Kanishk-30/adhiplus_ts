@@ -102,6 +102,14 @@ export function ProductShowcase() {
     e.stopPropagation()
   }
 
+  // Smooth scroll to inquiry form on button click
+  const scrollToContactForm = () => {
+    const contactSection = document.getElementById("contact")
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+  }
+
   return (
     <section id="products" className="py-16 bg-background relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -119,9 +127,7 @@ export function ProductShowcase() {
         />
       </div>
 
-      {/* Increased overall container width and fixed max width for better layout */}
       <div className="container mx-auto px-4 sm:px-8 lg:px-20 max-w-6xl">
-        {/* Top Text smaller on mobile */}
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 text-balance animate-fade-in-up">
             Our Premium Products
@@ -131,7 +137,6 @@ export function ProductShowcase() {
           </p>
         </div>
 
-        {/* Product listing with bullet points below images */}
         <div className="space-y-14 mb-16 px-4 md:px-8 lg:px-16">
           {products.map((product, index) => {
             const Icon = product.icon
@@ -176,7 +181,6 @@ export function ProductShowcase() {
                           }}
                         />
                       </div>
-                      {/* Minimal icon overlay */}
                       <div className="absolute top-6 left-6 bg-primary p-3 rounded-full transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
                         <Icon className="w-6 h-6 text-primary-foreground" />
                       </div>
@@ -192,7 +196,6 @@ export function ProductShowcase() {
                           </li>
                         ))}
                       </ul>
-                      {/* Learn More Button */}
                       <Button
                         className="w-full bg-accent hover:bg-accent/90 text-accent-foreground transition-transform duration-300 hover:scale-105"
                         onClick={(e) => {
@@ -208,7 +211,6 @@ export function ProductShowcase() {
                     </div>
                   </div>
 
-                  {/* Modal */}
                   {isModalOpen && (
                     <div
                       onClick={() => setModalOpenFor(null)}
@@ -217,10 +219,7 @@ export function ProductShowcase() {
                       role="dialog"
                       aria-labelledby={`${product.id}-modal-title`}
                     >
-                      <div
-                        className="bg-white rounded-xl shadow-lg max-w-lg p-6 relative mx-4"
-                        onClick={stopPropagation}
-                      >
+                      <div className="bg-white rounded-xl shadow-lg max-w-lg p-6 relative mx-4" onClick={stopPropagation}>
                         <button
                           aria-label="Close Learn More"
                           onClick={() => setModalOpenFor(null)}
@@ -228,7 +227,7 @@ export function ProductShowcase() {
                         >
                           <X className="w-6 h-6" />
                         </button>
-                        <h2 className="text-2xl font-bold mb-4 text-primary" id={`${product.id}-modal-title`}>
+                        <h2 id={`${product.id}-modal-title`} className="text-2xl font-bold mb-4 text-primary">
                           About {product.title}
                         </h2>
                         <p className="text-gray-700">{product.learnMoreText}</p>
@@ -241,19 +240,41 @@ export function ProductShowcase() {
           })}
         </div>
 
-        {/* Contact block with smaller text */}
         <div className="text-center px-4 md:px-8 max-w-6xl mx-auto">
           <div className="bg-card border border-border rounded-2xl p-8 md:p-12 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
-            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">Need a Custom Solution?</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">
+              Need a Custom Solution?
+            </h3>
             <p className="text-sm md:text-base text-muted-foreground mb-8 animate-fade-in-up">
               Our technical team can help you find the perfect product for your specific project requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 transition-transform duration-300 hover:scale-105">
-                <a href="#contact">Request Consultation</a>
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 transition-transform duration-300 hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const contactSection = document.getElementById("contact")
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
+                }}
+              >
+                Request Consultation
               </Button>
-              <Button asChild size="lg" variant="outline" className="transition-transform duration-300 hover:scale-105">
-                <a href="#contact">Download Catalog</a>
+              <Button
+                size="lg"
+                variant="outline"
+                className="transition-transform duration-300 hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const contactSection = document.getElementById("contact")
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
+                }}
+              >
+                Download Catalog
               </Button>
             </div>
           </div>
