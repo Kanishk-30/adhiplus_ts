@@ -102,11 +102,19 @@ export function ProductShowcase() {
     e.stopPropagation()
   }
 
-  // Smooth scroll to inquiry form on button click
+  // Improved smooth scroll with offset for fixed header
   const scrollToContactForm = () => {
     const contactSection = document.getElementById("contact")
     if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth", block: "start" })
+      // Adjust this offset if your header height changes
+      const headerOffset = 80
+      const elementPosition = contactSection.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
     }
   }
 
@@ -160,9 +168,8 @@ export function ProductShowcase() {
                     handleContainerClick(product.id)
                   }
                 }}
-                className={`transform transition-all duration-1000 cursor-pointer ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                }`}
+                className={`transform transition-all duration-1000 cursor-pointer ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                  }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
                 aria-label={`View details for ${product.title}`}
               >
@@ -250,29 +257,19 @@ export function ProductShowcase() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
+                type="button"
                 size="lg"
                 className="bg-accent hover:bg-accent/90 transition-transform duration-300 hover:scale-105"
-                onClick={(e) => {
-                  e.preventDefault()
-                  const contactSection = document.getElementById("contact")
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: "smooth", block: "start" })
-                  }
-                }}
+                onClick={scrollToContactForm}
               >
                 Request Consultation
               </Button>
               <Button
+                type="button"
                 size="lg"
                 variant="outline"
                 className="transition-transform duration-300 hover:scale-105"
-                onClick={(e) => {
-                  e.preventDefault()
-                  const contactSection = document.getElementById("contact")
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: "smooth", block: "start" })
-                  }
-                }}
+                onClick={scrollToContactForm}
               >
                 Download Catalog
               </Button>
