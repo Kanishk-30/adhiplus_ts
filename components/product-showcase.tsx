@@ -93,19 +93,17 @@ export function ProductShowcase() {
     return parallaxStrength * 30
   }
 
-  // Handle click outside modal or on container (except "Learn More")
   const handleContainerClick = (id: string) => {
-    if (modalOpenFor === id) return // prevent navigation if modal is open for this product
+    if (modalOpenFor === id) return
     router.push(`/products/${id}`)
   }
 
-  // To stop propagation of click inside modal content and prevent container navigation
   const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation()
   }
 
   return (
-    <section id="products" className="py-20 bg-background relative overflow-hidden">
+    <section id="products" className="py-16 bg-background relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <div
           className="absolute top-20 left-10 w-32 h-32 bg-accent rounded-full animate-pulse"
@@ -121,17 +119,20 @@ export function ProductShowcase() {
         />
       </div>
 
-      <div className="container mx-auto px-8 sm:px-12 lg:px-20 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-balance animate-fade-in-up">
+      {/* Increased overall container width and fixed max width for better layout */}
+      <div className="container mx-auto px-4 sm:px-8 lg:px-20 max-w-6xl">
+        {/* Top Text smaller on mobile */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 text-balance animate-fade-in-up">
             Our Premium Products
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed animate-fade-in-up animation-delay-300">
+          <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed">
             Engineered for excellence, our construction materials deliver superior performance and reliability.
           </p>
         </div>
 
-        <div className="space-y-16 mb-16 px-4 md:px-8 lg:px-16">
+        {/* Product listing with bullet points below images */}
+        <div className="space-y-14 mb-16 px-4 md:px-8 lg:px-16">
           {products.map((product, index) => {
             const Icon = product.icon
             const isVisible = visibleProducts.has(index)
@@ -154,13 +155,15 @@ export function ProductShowcase() {
                     handleContainerClick(product.id)
                   }
                 }}
-                className={`transform transition-all duration-1000 cursor-pointer ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                  }`}
+                className={`transform transition-all duration-1000 cursor-pointer ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
                 aria-label={`View details for ${product.title}`}
               >
                 <div className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 group relative">
                   <div className="flex flex-col lg:flex-row">
+                    {/* Image */}
                     <div className="lg:w-1/2 relative overflow-hidden">
                       <div className="relative h-64 lg:h-80 overflow-hidden">
                         <img
@@ -173,36 +176,25 @@ export function ProductShowcase() {
                           }}
                         />
                       </div>
+                      {/* Minimal icon overlay */}
                       <div className="absolute top-6 left-6 bg-primary p-3 rounded-full transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
                         <Icon className="w-6 h-6 text-primary-foreground" />
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
 
-                    <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
-                      <h3 className="text-3xl font-bold text-primary mb-4 transition-colors duration-300 group-hover:text-accent">
-                        {product.title}
-                      </h3>
-                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                        {product.description}
-                      </p>
-
-                      <ul className="space-y-3 mb-8">
-                        {product.features.map((feature, featureIndex) => (
-                          <li
-                            key={featureIndex}
-                            className="flex items-center text-foreground group/item"
-                          >
-                            <div className="w-2 h-2 bg-accent rounded-full mr-4 flex-shrink-0 transition-all duration-300 group-hover:scale-150 group-hover:bg-primary"></div>
-                            <span className="font-medium transition-colors duration-300 group-hover:text-primary">
-                              {feature}
-                            </span>
+                    {/* Bullet points below the picture */}
+                    <div className="lg:w-1/2 p-6 flex flex-col justify-center">
+                      <h3 className="text-xl md:text-2xl font-semibold text-primary mb-3">{product.title}</h3>
+                      <ul className="list-disc list-inside space-y-2 mb-4 text-sm md:text-base text-muted-foreground">
+                        {product.features.map((feature, fi) => (
+                          <li key={fi} className="group/item text-foreground transition-colors duration-300 group-hover:text-primary">
+                            {feature}
                           </li>
                         ))}
                       </ul>
-
+                      {/* Learn More Button */}
                       <Button
-                        className="w-fit bg-accent hover:bg-accent/90 text-accent-foreground transform transition-all duration-300 hover:scale-105 hover:shadow-lg group/btn"
+                        className="w-full bg-accent hover:bg-accent/90 text-accent-foreground transition-transform duration-300 hover:scale-105"
                         onClick={(e) => {
                           e.stopPropagation()
                           setModalOpenFor(product.id)
@@ -211,12 +203,12 @@ export function ProductShowcase() {
                         aria-expanded={isModalOpen}
                       >
                         Learn More
-                        <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                        <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                       </Button>
                     </div>
                   </div>
 
-                  {/* Modal Overlay */}
+                  {/* Modal */}
                   {isModalOpen && (
                     <div
                       onClick={() => setModalOpenFor(null)}
@@ -236,13 +228,10 @@ export function ProductShowcase() {
                         >
                           <X className="w-6 h-6" />
                         </button>
-                        <h2
-                          id={`${product.id}-modal-title`}
-                          className="text-2xl font-bold mb-4 text-primary"
-                        >
+                        <h2 className="text-2xl font-bold mb-4 text-primary" id={`${product.id}-modal-title`}>
                           About {product.title}
                         </h2>
-                        <p className="text-gray-700 leading-relaxed">{product.learnMoreText}</p>
+                        <p className="text-gray-700">{product.learnMoreText}</p>
                       </div>
                     </div>
                   )}
@@ -252,26 +241,18 @@ export function ProductShowcase() {
           })}
         </div>
 
-        <div className="text-center px-4 md:px-8">
-          <div className="bg-card border border-border rounded-2xl p-8 md:p-12 max-w-4xl mx-auto hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
-            <h3 className="text-3xl font-bold text-primary mb-4 animate-fade-in-up">Need a Custom Solution?</h3>
-            <p className="text-lg text-muted-foreground mb-8 text-balance animate-fade-in-up animation-delay-200">
+        {/* Contact block with smaller text */}
+        <div className="text-center px-4 md:px-8 max-w-6xl mx-auto">
+          <div className="bg-card border border-border rounded-2xl p-8 md:p-12 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
+            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">Need a Custom Solution?</h3>
+            <p className="text-sm md:text-base text-muted-foreground mb-8 animate-fade-in-up">
               Our technical team can help you find the perfect product for your specific project requirements.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-              <Button
-                asChild
-                size="lg"
-                className="bg-accent hover:bg-accent/90 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 transition-transform duration-300 hover:scale-105">
                 <a href="#contact">Request Consultation</a>
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="transform transition-all duration-300 hover:scale-105 bg-transparent"
-              >
+              <Button asChild size="lg" variant="outline" className="transition-transform duration-300 hover:scale-105">
                 <a href="#contact">Download Catalog</a>
               </Button>
             </div>
