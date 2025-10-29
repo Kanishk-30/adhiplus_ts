@@ -129,10 +129,10 @@ export function ProductShowcase() {
           className="absolute top-40 right-20 w-24 h-24 bg-primary rounded-full animate-pulse"
           style={{ animationDelay: "2s" }}
         />
-        <div
+        {/* <div
           className="absolute bottom-20 left-1/3 w-20 h-20 bg-accent rounded-full animate-pulse"
           style={{ animationDelay: "4s" }}
-        />
+        /> */}
       </div>
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-20 max-w-6xl">
@@ -247,35 +247,39 @@ export function ProductShowcase() {
           })}
         </div>
 
-        <div className="text-center px-4 md:px-8 max-w-6xl mx-auto">
-          <div className="bg-card border border-border rounded-2xl p-8 md:p-12 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
-            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">
-              Need a Custom Solution?
-            </h3>
-            <p className="text-sm md:text-base text-muted-foreground mb-8 animate-fade-in-up">
-              Our technical team can help you find the perfect product for your specific project requirements.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                type="button"
-                size="lg"
-                className="bg-accent hover:bg-accent/90 transition-transform duration-300 hover:scale-105"
-                onClick={scrollToContactForm}
-              >
-                Request Consultation
-              </Button>
-              <Button
-                type="button"
-                size="lg"
-                variant="outline"
-                className="transition-transform duration-300 hover:scale-105"
-                onClick={scrollToContactForm}
-              >
-                Download Catalog
-              </Button>
+        <a href="#contact" className="block text-inherit no-underline">
+          <div className="text-center px-4 md:px-8 max-w-6xl mx-auto">
+            <div className="bg-card border border-border rounded-2xl p-8 md:p-12 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
+              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">
+                Need a Custom Solution?
+              </h3>
+              <p className="text-sm md:text-base text-muted-foreground mb-8 animate-fade-in-up">
+                Our technical team can help you find the perfect product for your specific project requirements.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  type="button"
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 transition-transform duration-300 hover:scale-105 pointer-events-none"
+                  onClick={(e) => e.preventDefault()} // Disable button click event to allow parent anchor click
+                >
+                  Request Consultation
+                </Button>
+                <Button
+                  type="button"
+                  size="lg"
+                  variant="outline"
+                  className="transition-transform duration-300 hover:scale-105 pointer-events-none"
+                  onClick={(e) => e.preventDefault()} // Disable button click event to allow parent anchor click
+                >
+                  Download Catalog
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
+
+
       </div>
     </section>
   )
