@@ -234,6 +234,16 @@
   }
 }
 
+/* Cinematic pan animation for hero carousel - subtle zoom + horizontal movement */
+@keyframes cinematicPan {
+  0% {
+    transform: scale(1.00) translateX(0%);
+  }
+  100% {
+    transform: scale(1.07) translateX(-2%);
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -449,33 +459,7 @@ html {
     background: transparent !important;
   }
 
-  /* HEADER BACKDROP BLUR */
-  header,
-  nav,
-  .header,
-  [class*="header"]:not([class*="image"]),
-  [class*="nav"]:not([class*="image"]),
-  [role="banner"],
-  [data-sticky],
-  [class*="sticky"]:not([class*="image"]),
-  [class*="fixed"]:not([class*="image"]) {
-    backdrop-filter: blur(12px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-    background: rgba(255, 255, 255, 0.85) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-  }
-
-  /* Dark mode header blur */
-  .dark header,
-  .dark nav,
-  .dark .header,
-  .dark [class*="header"]:not([class*="image"]),
-  .dark [class*="nav"]:not([class*="image"]) {
-    backdrop-filter: blur(12px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-    background: rgba(20, 20, 20, 0.85) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  }
+  /* HEADER BACKDROP BLUR - REMOVED FOR SOLID BACKGROUND */
 
   /* Keep header content clear */
   header img,

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Droplets, Hammer, Layers, X } from "lucide-react"
+import { ArrowRight, Droplets, Hammer, Layers, Sparkles, X } from "lucide-react"
 
 const products = [
   {
@@ -13,7 +13,7 @@ const products = [
       "High-performance adhesive for ceramic, porcelain, and natural stone tiles. Superior bonding strength for interior and exterior applications.",
     icon: Layers,
     features: ["Water resistant", "Fast setting", "High bond strength", "Suitable for all tile types"],
-    image: "adhiplus-cover.png",
+    image: "/cover images/ad-cover.png",
     learnMoreText:
       "Tile adhesive is a specialized bonding material used to fix tiles onto various surfaces. It provides strong adhesion, durability, and resistance to environmental factors for both interior and exterior applications.",
   },
@@ -24,7 +24,7 @@ const products = [
       "Premium epoxy resins and coatings for industrial flooring, repairs, and protective applications. Chemical and abrasion resistant.",
     icon: Droplets,
     features: ["Chemical resistant", "High durability", "Seamless finish", "Easy maintenance"],
-    image: "epoxy_cover.png",
+    image: "/cover images/ep-cover.png",
     learnMoreText:
       "Epoxy solutions are high-performance resins used for flooring and repairs, known for their chemical resistance, durability, and smooth finish.",
   },
@@ -35,9 +35,41 @@ const products = [
       "Professional-grade grout solutions for tile installations. Available in multiple colors with stain-resistant properties.",
     icon: Hammer,
     features: ["Stain resistant", "Color consistent", "Crack resistant", "Easy application"],
-    image: "grout_cover.png",
+    image: "/cover images/gr-cover.png",
     learnMoreText:
       "Grout systems fill the gaps between tiles, providing a cohesive, durable, and stain-resistant finish to tile installations.",
+  },
+  {
+    id: "sbr",
+    title: "SBR Latex",
+    description:
+      "High-performance SBR latex polymer modifier for improving bonding, flexibility, water resistance, and durability in cementitious and construction applications.",
+    icon: Droplets,
+    features: [
+      "Superior Bonding",
+      "Enhanced Flexibility",
+      "Water Resistant",
+      "Better Durability"
+    ],
+    image: "/cover images/sbr-cover.png",
+    learnMoreText:
+      "SBR latex is a polymer modifier used to enhance the performance of cement-based systems, improving adhesion, flexibility, water resistance, and overall durability."
+  },
+  {
+    id: "tile-cleaner",
+    title: "Tile Cleaner",
+    description:
+      "Powerful tile cleaning solution designed to remove tough stains, dirt, cement residue, and surface deposits while restoring a clean, fresh finish.",
+    icon: Sparkles,
+    features: [
+      "Powerful Cleaning",
+      "Removes Tough Stains",
+      "Cement Residue Removal",
+      "Restores Surface Shine"
+    ],
+    image: "/cover images/tc-cover.png",
+    learnMoreText:
+      "Adhiplus Tile Cleaner is designed for effective cleaning of tile and hard surfaces, helping remove stubborn dirt, stains, and construction residues for a cleaner and refreshed appearance."
   },
 ]
 

@@ -174,68 +174,68 @@ export default function AdminPanel() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         <AdminHeader />
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 mb-8">
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Inquiries</p>
-                  <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-600">Total Inquiries</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-gray-900">{stats.total}</p>
                 </div>
-                <Mail className="h-8 w-8 text-blue-600" />
+                <Mail className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">New</p>
-                  <p className="text-3xl font-bold text-blue-600">{stats.new}</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-600">New</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-blue-600">{stats.new}</p>
                 </div>
-                <Badge className="bg-blue-100 text-blue-800">New</Badge>
+                <Badge className="bg-blue-100 text-blue-800 text-xs sm:text-sm">New</Badge>
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Contacted</p>
-                  <p className="text-3xl font-bold text-yellow-600">{stats.contacted}</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-600">Contacted</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-yellow-600">{stats.contacted}</p>
                 </div>
-                <Badge className="bg-yellow-100 text-yellow-800">Progress</Badge>
+                <Badge className="bg-yellow-100 text-yellow-800 text-xs sm:text-sm">Progress</Badge>
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Closed</p>
-                  <p className="text-3xl font-bold text-green-600">{stats.closed}</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-600">Closed</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-green-600">{stats.closed}</p>
                 </div>
-                <Badge className="bg-green-100 text-green-800">Done</Badge>
+                <Badge className="bg-green-100 text-green-800 text-xs sm:text-sm">Done</Badge>
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">This Month</p>
-                  <p className="text-3xl font-bold text-purple-600">{stats.thisMonth}</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-600">This Month</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-purple-600">{stats.thisMonth}</p>
                 </div>
-                <Calendar className="h-8 w-8 text-purple-600" />
+                <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600" />
               </div>
             </CardContent>
           </Card>
@@ -244,19 +244,19 @@ export default function AdminPanel() {
         {/* Main Content */}
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div>
                 <CardTitle>Customer Inquiries</CardTitle>
                 <CardDescription>Manage and respond to customer inquiries</CardDescription>
               </div>
-              <Button onClick={fetchInquiries} disabled={isLoading} className="flex items-center gap-2">
+              <Button onClick={fetchInquiries} disabled={isLoading} className="flex items-center gap-2 max-w-xs w-full sm:w-auto">
                 <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
                 Refresh
               </Button>
             </div>
 
             {/* Search and Filter */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+            <div className="flex flex-col sm:flex-row gap-3 mt-4">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
@@ -281,96 +281,98 @@ export default function AdminPanel() {
             {isLoading ? (
               <div className="text-center py-12">
                 <RefreshCw className="h-8 w-8 text-gray-400 mx-auto mb-4 animate-spin" />
-                <p className="text-gray-600">Loading inquiries...</p>
+                <p className="text-gray-600 text-base sm:text-lg">Loading inquiries...</p>
               </div>
             ) : (
               <div className="space-y-4">
-                {filteredInquiries.map((inquiry) => (
-                  <Card key={inquiry._id?.toString()} className="border-l-4 border-l-blue-600">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <User className="h-4 w-4 text-gray-500" />
-                            <h3 className="font-semibold text-gray-900">{inquiry.name}</h3>
-                            <Badge className={getStatusColor(inquiry.status)}>{inquiry.status}</Badge>
-                          </div>
+                {filteredInquiries.length > 0 ? (
+                  filteredInquiries.map((inquiry) => (
+                    <Card key={inquiry._id?.toString()} className="border-l-4 border-l-blue-600">
+                      <CardContent className="p-4 sm:p-6">
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2 flex-wrap">
+                              <User className="h-4 w-4 text-gray-500" />
+                              <h3 className="font-semibold text-gray-900">{inquiry.name}</h3>
+                              <Badge className={getStatusColor(inquiry.status)}>{inquiry.status}</Badge>
+                            </div>
 
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-3">
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <Mail className="h-4 w-4" />
-                              {inquiry.email}
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <Phone className="h-4 w-4" />
-                              {inquiry.phone}
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <Package className="h-4 w-4" />
-                              {getProductDisplayName(inquiry.productInterest)}
-                            </div>
-                            {inquiry.company && (
-                              <div className="flex items-center gap-2 text-sm text-gray-600">
-                                <Building2 className="h-4 w-4" />
-                                {inquiry.company}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
+                              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                                <Mail className="h-4 w-4" />
+                                {inquiry.email}
                               </div>
-                            )}
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <Calendar className="h-4 w-4" />
-                              {formatDate(inquiry.createdAt)}
+                              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                                <Phone className="h-4 w-4" />
+                                {inquiry.phone}
+                              </div>
+                              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                                <Package className="h-4 w-4" />
+                                {getProductDisplayName(inquiry.productInterest)}
+                              </div>
+                              {inquiry.company && (
+                                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                                  <Building2 className="h-4 w-4" />
+                                  {inquiry.company}
+                                </div>
+                              )}
+                              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                                <Calendar className="h-4 w-4" />
+                                {formatDate(inquiry.createdAt)}
+                              </div>
                             </div>
+
+                            <p className="text-gray-700 text-sm bg-gray-50 p-3 rounded-lg break-words">{inquiry.message}</p>
                           </div>
 
-                          <p className="text-gray-700 text-sm bg-gray-50 p-3 rounded-lg">{inquiry.message}</p>
+                          <div className="flex flex-col gap-2 lg:w-48 min-w-[160px]">
+                            <Button
+                              size="sm"
+                              variant={inquiry.status === "contacted" ? "default" : "outline"}
+                              onClick={() => updateStatus(inquiry._id!.toString(), "contacted")}
+                              disabled={isUpdating === inquiry._id?.toString()}
+                              className="w-full"
+                            >
+                              {isUpdating === inquiry._id?.toString() ? (
+                                <RefreshCw className="h-4 w-4 animate-spin" />
+                              ) : (
+                                "Mark Contacted"
+                              )}
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant={inquiry.status === "closed" ? "default" : "outline"}
+                              onClick={() => updateStatus(inquiry._id!.toString(), "closed")}
+                              disabled={isUpdating === inquiry._id?.toString()}
+                              className="w-full"
+                            >
+                              {isUpdating === inquiry._id?.toString() ? (
+                                <RefreshCw className="h-4 w-4 animate-spin" />
+                              ) : (
+                                "Mark Closed"
+                              )}
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="destructive"
+                              onClick={() => deleteInquiry(inquiry._id!.toString())}
+                              className="w-full"
+                            >
+                              <Trash2 className="h-4 w-4 mr-1" />
+                              Delete
+                            </Button>
+                          </div>
                         </div>
-
-                        <div className="flex flex-col gap-2 lg:w-48">
-                          <Button
-                            size="sm"
-                            variant={inquiry.status === "contacted" ? "default" : "outline"}
-                            onClick={() => updateStatus(inquiry._id!.toString(), "contacted")}
-                            disabled={isUpdating === inquiry._id?.toString()}
-                            className="w-full"
-                          >
-                            {isUpdating === inquiry._id?.toString() ? (
-                              <RefreshCw className="h-4 w-4 animate-spin" />
-                            ) : (
-                              "Mark Contacted"
-                            )}
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant={inquiry.status === "closed" ? "default" : "outline"}
-                            onClick={() => updateStatus(inquiry._id!.toString(), "closed")}
-                            disabled={isUpdating === inquiry._id?.toString()}
-                            className="w-full"
-                          >
-                            {isUpdating === inquiry._id?.toString() ? (
-                              <RefreshCw className="h-4 w-4 animate-spin" />
-                            ) : (
-                              "Mark Closed"
-                            )}
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="destructive"
-                            onClick={() => deleteInquiry(inquiry._id!.toString())}
-                            className="w-full"
-                          >
-                            <Trash2 className="h-4 w-4 mr-1" />
-                            Delete
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-
-                {filteredInquiries.length === 0 && !isLoading && (
+                      </CardContent>
+                    </Card>
+                  ))
+                ) : (
                   <div className="text-center py-12">
                     <Mail className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-gray-900 mb-2">No inquiries found</h3>
-                    <p className="text-gray-600">No inquiries match your current search and filter criteria.</p>
+                    <p className="text-gray-600 text-base sm:text-lg">
+                      No inquiries match your current search and filter criteria.
+                    </p>
                   </div>
                 )}
               </div>

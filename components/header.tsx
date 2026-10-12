@@ -29,7 +29,7 @@ export function Header() {
   }, [showDropdown])
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
+    <header className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
@@ -52,7 +52,7 @@ export function Header() {
             <a href="#contact" className="text-foreground hover:text-accent transition-colors text-sm sm:text-base">Contact</a>
           </nav>
 
-          {/* Login Button + Dropdown (Desktop) */}
+          {/* Desktop Login + Dropdown */}
           <div className="hidden md:flex items-center space-x-4 relative">
             <Button
               variant="outline"
@@ -96,14 +96,26 @@ export function Header() {
               <a href="#products" className="block px-3 py-2 text-foreground hover:text-accent transition-colors rounded-md text-base">Products</a>
               <a href="#about" className="block px-3 py-2 text-foreground hover:text-accent transition-colors rounded-md text-base">About Us</a>
               <a href="#contact" className="block px-3 py-2 text-foreground hover:text-accent transition-colors rounded-md text-base">Contact</a>
-              <div className="px-3 py-2">
-                <Button variant="outline" className="w-full relative bg-transparent text-base py-3">
+
+              {/* Login area for mobile */}
+              <div className="border-t border-gray-200 mt-4 pt-4 space-y-3">
+                <Button
+                  variant="outline"
+                  className="w-full relative bg-transparent text-base py-3 flex items-center justify-center"
+                  // Optional: you can add a toggle here or link directly
+                  onClick={() => setShowDropdown((v) => !v)}
+                >
                   <Bell className="w-5 h-5 mr-2" />
-                  Admin
-                  <span className="absolute -top-2 -right-2 bg-accent text-accent-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    3
-                  </span>
+                  Login
                 </Button>
+
+                {/* Dealer and Admin login links visible always on mobile menu */}
+                <Link href="/dealer/login" className="block px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">
+                  Dealer Login
+                </Link>
+                <Link href="/admin/login" className="block px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">
+                  Admin Login
+                </Link>
               </div>
             </div>
           </div>
